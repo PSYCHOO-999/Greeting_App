@@ -2,7 +2,6 @@ package com.bridgelabz.greetingapp.service;
 
 import com.bridgelabz.greetingapp.repository.GreetingRepository;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class GreetingService {
@@ -12,7 +11,7 @@ public class GreetingService {
         this.greetingRepository = greetingRepository;
     }
 
-    public List<String> getAllGreetings() {
-        return greetingRepository.findAllGreetings();
+    public String updateGreeting(Long id, String newMessage) {
+        return greetingRepository.updateGreeting(id, newMessage);
     }
 }
