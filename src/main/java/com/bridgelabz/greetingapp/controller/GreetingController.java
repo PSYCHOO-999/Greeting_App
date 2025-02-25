@@ -1,6 +1,7 @@
 package com.bridgelabz.greetingapp.controller;
 import com.bridgelabz.greetingapp.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
+import com.bridgelabz.greetingapp.dto.UserDTO;
 
 @RestController
 @RequestMapping("/greeting")
@@ -16,5 +17,9 @@ public class GreetingController {
     public String getGreeting() {
         return greetingService.getGreeting();
     }
-}
 
+    @PostMapping("/personalized")
+    public String getPersonalizedGreeting(@RequestBody UserDTO user) {
+        return greetingService.getPersonalizedGreeting(user);
+    }
+}
