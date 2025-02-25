@@ -2,7 +2,8 @@ package com.bridgelabz.greetingapp.repository;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +22,15 @@ public class GreetingRepository {
         return "Greeting saved with ID: " + currentId++;
     }
 
-    public Optional<String> findGreetingById(Long id) {
-        return Optional.ofNullable(greetings.get(id));
+    public String findGreetingById(Long id) {
+        return greetings.getOrDefault(id, "Greeting not found");
+    }
+
+    // ✅ New Method to List All Greetings
+    public List<String> findAllGreetings() {
+        return greetings.entrySet()
+                .stream()
+                .map(entry -> "ID: " + entry.getKey() + ", Message: " + entry.getValue())
+                .collect(Collectors.toList());
     }
 }
